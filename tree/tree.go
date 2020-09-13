@@ -92,8 +92,8 @@ func minDepth(n *node) int {
 	if n == nil {
 		return 0
 	}
-	left := maxDepth(n.left)
-	right := maxDepth(n.right)
+	left := minDepth(n.left)
+	right := minDepth(n.right)
 
 	if left > right {
 		return right + 1
@@ -103,7 +103,7 @@ func minDepth(n *node) int {
 
 // levelOrder
 func levelOrder(n node) {
-	var levelNodes []string
+	//var levelNodes []string
 	nodes := []node{n}
 
 	for len(nodes) > 0 {
