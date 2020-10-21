@@ -28,6 +28,7 @@ func (graph *Graph) addEdge(s int, t int) {
 var paths []int
 var passed map[int]bool
 
+// DFS test
 func (graph *Graph) DFS(s int, t int) {
 	for node := graph.adj[s].Front(); node != nil; node = node.Next() {
 		if passed[node.Value.(int)] != true {
