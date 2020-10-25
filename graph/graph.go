@@ -27,9 +27,16 @@ func (graph *Graph) addEdge(s int, t int) {
 
 var paths []int
 var passed map[int]bool
+var found bool
 
 // DFS test
 func (graph *Graph) DFS(s int, t int) {
+	graph.recurDfs(s, t)
+}
+
+func (graph *Graph) recurDfs(s int, t int) {
+	if passed[
+
 	for node := graph.adj[s].Front(); node != nil; node = node.Next() {
 		if passed[node.Value.(int)] != true {
 			return
@@ -43,5 +50,7 @@ func (graph *Graph) DFS(s int, t int) {
 			paths = append(paths, node.Value.(int))
 			return
 		}
+		recurDfs(node.Value.(int), t)
 	}
+	
 }
