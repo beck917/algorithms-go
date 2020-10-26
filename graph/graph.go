@@ -1,6 +1,9 @@
 package main
 
-import "container/list"
+import (
+	"container/list"
+	"fmt"
+)
 
 // Graph 图的数据结构
 type Graph struct {
@@ -9,12 +12,20 @@ type Graph struct {
 }
 
 func main() {
-
+	g := &Graph{}
+	g.New(6)
+	g.addEdge(0, 1)
+	g.addEdge(1, 2)
+	g.addEdge(2, 3)
+	g.addEdge(3, 5)
+	g.addEdge(2, 4)
+	g.DFS(0, 4)
 }
 
 // New 初始化graph
 func (graph *Graph) New(v int) {
 	graph.v = v
+	graph.adj = make([]*list.List, 6)
 	for i := 0; i < v; i++ {
 		graph.adj[i] = list.New()
 	}
@@ -26,7 +37,7 @@ func (graph *Graph) addEdge(s int, t int) {
 }
 
 var nodePath *Node
-var visited map[int]bool
+var visited map[int]bool = make(map[int]bool)
 var found bool
 
 // Node 用链表存储遍历过的节点, 这样在回溯的时候,可以将next覆盖掉
@@ -35,33 +46,38 @@ type Node struct {
 	value int
 }
 
+func (l *Node) traversal() {
+	for l != nil {
+		fmt.Println(l.value)
+		l = l.next
+	}
+}
+
 // DFS test
 func (graph *Graph) DFS(s int, t int) {
 	nodePath := &Node{
 		value: s,
 	}
-	graph.recurDfs(s, t)
+	graph.recurDfs(s, t, nodePath)
+	nodePath.traversal()
 }
 
-func (graph *Graph) recurDfs(s int, t int) {
-	visited[node.Value.(int)] = true
+func (graph *Graph) recurDfs(s int, t int, nodePath *Node) {
+	fmt.Println("visited node ", s)
+	visited[s] = true
+	if s == t {
+		found = true
+		return
+	}
 
 	for node := graph.adj[s].Front(); node != nil; node = node.Next() {
-		if passed[node.Value.(int)] != true {
+		if found == true {
 			return
 		}
-		if node.Value != t {
-			if passed[node.Value.(int)] != true {
-				paths = append(paths, node.Value.(int))
-				passed[node.Value.(int)] = true
-			}
-		} else {
-			paths = append(paths, node.Value.(int))
-			return
-		}
-		if !visited[node.Value.(int)] {
 
-			recurDfs(node.Value.(int), t)
+		if !visited[node.Value.(int)] {
+			nodePath.next = &Node{value: node.Value.(int)}
+			graph.recurDfs(node.Value.(int), t, nodePath.next)
 		}
 
 	}
