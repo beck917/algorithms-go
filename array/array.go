@@ -27,7 +27,7 @@ func binarySearch(list []int, target int) int {
 	return -1
 }
 
-// quickSort
+// quickSort1
 func quickSort(list []int, start, end int) {
 	if start >= end {
 		return
