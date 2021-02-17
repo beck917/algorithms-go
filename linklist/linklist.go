@@ -2,6 +2,24 @@ package main
 
 import "fmt"
 
+/**
+
+//ElemType is list type
+type ElemType interface{}
+
+//Node is list node
+type Node struct {
+	Data ElemType
+	Next *Node
+}
+
+//LinkedList is single list
+type LinkedList struct {
+	Head *Node
+}
+
+*/
+
 type linkList struct {
 	next  *linkList
 	value int

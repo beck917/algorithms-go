@@ -1,7 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"container/list"
+	"fmt"
+)
 
 func main() {
 	fmt.Println("main")
+
+	list.New()
 }

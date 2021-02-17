@@ -35,6 +35,8 @@ func main() {
 	postOrder(t.root)
 	fmt.Println("\nmaxDepth:", maxDepth(t.root))
 	fmt.Println("\nminDepth:", minDepth(t.root))
+	fmt.Println()
+	levelOrder(t.root)
 }
 
 func preOrder(n *node) {
@@ -102,11 +104,21 @@ func minDepth(n *node) int {
 }
 
 // levelOrder
-func levelOrder(n node) {
+func levelOrder(n *node) {
 	//var levelNodes []string
-	nodes := []node{n}
+	nodes := []*node{n}
 
 	for len(nodes) > 0 {
-
+		var tmpNodes []*node
+		for _, node := range nodes {
+			fmt.Print(node.val)
+			if node.left != nil {
+				tmpNodes = append(tmpNodes, node.left)
+			}
+			if node.right != nil {
+				tmpNodes = append(tmpNodes, node.right)
+			}
+		}
+		nodes = tmpNodes
 	}
 }
