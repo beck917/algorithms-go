@@ -20,6 +20,7 @@ func main() {
 	g.addEdge(3, 5)
 	g.addEdge(2, 4)
 	g.DFS(0, 4)
+	//g.BFS(0, 4)
 }
 
 // New 初始化graph
@@ -81,5 +82,47 @@ func (graph *Graph) recurDfs(s int, t int, nodePath *Node) {
 		}
 
 	}
+}
 
+// prev 数组，存储遍历过的节点，通过记录前置节点的方式，实际上就是用数组表示链表
+// queue 存储即将遍历的子节点
+// visted 存储遍历过的节点
+func (graph *Graph) BFS(s, t int) {
+	if s == t {
+		return
+	}
+	var prev []int = make([]int, graph.v)
+	var queue = list.New()
+	var visited = make(map[int]bool)
+
+	for i := 0; i < graph.v; i++ {
+		prev[i] = -1
+	}
+
+	queue.PushBack(s)
+
+	for queue.Len() != 0 {
+		elem := queue.Back().Value.(int)
+
+		for node := graph.adj[elem].Front(); node != nil; node = node.Next() {
+			cur := node.Value.(int)
+			if !visited[cur] {
+				prev[cur] = elem
+			}
+
+			if cur == t {
+				graph.print(prev, s, t)
+				return
+			}
+			visited[cur] = true
+			queue.PushBack(cur)
+		}
+	}
+}
+
+func (graph *Graph) print(prev []int, s, t int) {
+	if s != t && prev[t] != -1 {
+		graph.print(prev, s, prev[t])
+	}
+	fmt.Println(t)
 }
