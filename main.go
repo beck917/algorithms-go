@@ -31,3 +31,7 @@ func binarySearch(list []int, target int) int {
 	}
 	return -1
 }
+
+func quickSort() {
+
+}
