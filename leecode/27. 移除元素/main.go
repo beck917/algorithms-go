@@ -14,5 +14,5 @@ func removeElement(nums []int, val int) int {
 		}
 	}
 
-	return count - j
+	return j
 }
