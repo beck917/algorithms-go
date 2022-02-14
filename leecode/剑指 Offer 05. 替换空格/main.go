@@ -6,6 +6,9 @@ func main() {
 	fmt.Println(replaceSpace("We are happy."))
 }
 
+// 1. 先扩容
+// 2. 双指针法，注意，是从后往前的双指针。
+// 3. 需要注意的是，i指针的数组长度的s，而j指针的数组长度为扩容厚的ss。这样i如果不为空，就直接改变j的值
 func replaceSpace(s string) string {
 	//扩容
 	tmps := ""
