@@ -4,9 +4,9 @@ import "fmt"
 
 func main() {
 	nums := []int{3, 2, 1, 5, 6, 4}
-	k := 1
+	k := 2
 
-	fmt.Println(findKthLargest(nums, k))
+	fmt.Println(findKthLargest2(nums, k))
 }
 
 func findKthLargest(nums []int, k int) int {
@@ -41,4 +41,43 @@ func findQuick(nums []int, start, end, k int) int {
 	}
 
 	return nums[index]
+}
+
+//-----堆排序方案------------
+func findKthLargest2(nums []int, k int) int {
+	heapSize := len(nums)
+	// buildHeap
+	for i := len(nums) / 2; i >= 0; i-- {
+		heapify(nums, heapSize, i)
+	}
+
+	for i := 0; i < k-1; i++ {
+		// 交换堆顶元素和最后一个元素， 这样相当于删除了堆顶
+		nums[0], nums[heapSize-1] = nums[heapSize-1], nums[0]
+		heapSize--
+		// 因为删除了堆顶，所以要重新构建堆化
+		heapify(nums, heapSize, 0)
+	}
+
+	return nums[0]
+
+}
+
+// n 数组长度 i 需要堆化的节点
+func heapify(nums []int, n, i int) {
+	for {
+		left, right, maxPos := i*2+1, i*2+2, i
+		if left < n && nums[maxPos] < nums[left] {
+			maxPos = left
+		}
+		if right < n && nums[maxPos] < nums[right] {
+			maxPos = right
+		}
+		if i == maxPos {
+			break
+		}
+
+		nums[i], nums[maxPos] = nums[maxPos], nums[i]
+		i = maxPos
+	}
 }
