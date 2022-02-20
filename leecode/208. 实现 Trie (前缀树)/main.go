@@ -1,8 +1,8 @@
 package main
 
 type Trie struct {
-	children [26]*Trie
-	isEnd    bool
+	children [26]*Trie // 数据结构采用26个字母的数组
+	isEnd    bool      // 因为需要判断不是某个单词的前缀,所以需要加上isend标记
 }
 
 func Constructor() Trie {
@@ -12,7 +12,7 @@ func Constructor() Trie {
 func (this *Trie) Insert(word string) {
 	tmpNode := this
 	for i := 0; i < len(word); i++ {
-		char := word[i] - 'a'
+		char := word[i] - 'a' //这里要注意，是个小技巧，直接相减就可以得出此字幕在26数组中的位置
 		if tmpNode.children[char] == nil {
 			tmpNode.children[char] = &Trie{}
 		}
