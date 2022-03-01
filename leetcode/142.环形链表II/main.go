@@ -12,12 +12,17 @@ func detectCycle(head *ListNode) *ListNode {
 	for fast != nil && fast.Next != nil {
 		fast = fast.Next.Next
 		slow = slow.Next
-
-		// 需要公式推到，非人类思维可以直接理解。。。
 		if fast == slow {
-			for slow.Next
+			ptr := head
+			for ptr != nil {
+				if ptr == slow {
+					return ptr
+				}
+				slow = slow.Next
+				ptr = ptr.Next
+			}
 		}
 	}
 
-	return false
+	return nil
 }
