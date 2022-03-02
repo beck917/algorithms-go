@@ -11,7 +11,7 @@ func main() {
 输入：nums = [4,5,6,7,0,1,2], target = 6,7,0,1,2,4,5
 输出：4
 */
-func search(nums []int, target int) int {
+func searchold(nums []int, target int) int {
 	left := 0
 	right := len(nums) - 1
 
@@ -48,5 +48,41 @@ func search(nums []int, target int) int {
 			return mid
 		}
 	}
+	return -1
+}
+
+func search(nums []int, target int) int {
+	left := 0
+	right := len(nums) - 1
+
+	for left <= right {
+
+		mid := (left + right) >> 1
+		//fmt.Println(left, right, mid)
+		if target == nums[mid] {
+			return mid
+		}
+
+		// 数组的规律, 只有两种情况,要么左边有序,要么右边有序
+		// 我们只要对比了有序的部分, 数字是否存在其中, 否则数字肯定在无序的部分
+		// 7 0 1 2 3 4
+		// 4 5 6 7 0 1 2
+		if nums[left] > nums[mid] {
+			// 右边有序
+			if nums[right] >= target && target > nums[mid] {
+				left = mid + 1
+			} else {
+				right = mid - 1
+			}
+		} else {
+			// 左边有序
+			if target < nums[mid] && target >= nums[left] {
+				right = mid - 1
+			} else {
+				left = mid + 1
+			}
+		}
+	}
+
 	return -1
 }
