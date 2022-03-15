@@ -9,6 +9,20 @@ type ListNode struct {
 // 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 // step3: 0 (pointer) -> 1 <- 2 <- 3 (prev)    4 (curr) -> 5 -> 6 -> 7
 // 0 -> 3 -> 2 -> 1 (pointer) -> 4 -> 5 -> 6 -> 7
+/**
+看连接文章就可以了,这里简单说一下
+
+这个题目是个困难的是题目,但是只要明白了方法,编写出正确的代码并不困难
+首先要判断是否满足k个节点,不满足的话就直接调出loop
+
+满足的话,就按照反转链表的方式,反转前面k个
+0 (pointer) -> 1 <- 2 <- 3 (prev) ,注意,这里反转不反转point
+
+tail := pointer.Next
+然后将prev接到point上,pointer.next = prev
+tail.next = cur 将point next(1)的next指向4
+point等于tail(1)
+*/
 func reverseKGroup(head *ListNode, k int) *ListNode {
 	dummyHead := &ListNode{0, head}
 	pointer := dummyHead

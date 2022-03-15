@@ -5,6 +5,11 @@ type ListNode struct {
 	Next *ListNode
 }
 
+/**
+这个题我的方法比较取巧
+
+先找到两个链表长度一致的地方,然后从这个地方同时遍历链表,如果相等就相交
+*/
 func getIntersectionNode(headA, headB *ListNode) *ListNode {
 	tmpHeadA := headA
 	tmpHeadB := headB

@@ -10,7 +10,6 @@ import "fmt"
 abcabcbb 比如第一次循环后,在第二个a这里停止了,也就是j=3的位置,第二次循环从b开始,
 bc这来字符,签名已经算过是不重复的了,所以不会在进去循环了,已经在strmap里面了.
 这里会继续在a(bca)b也就是j=4的位置停下来,后面也是如此,由此得出j-i就是每次最大的数值了
-```
 */
 func main() {
 	s := "pwwkew" //pwwkew,abcabcbb

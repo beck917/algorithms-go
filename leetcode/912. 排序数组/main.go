@@ -3,7 +3,19 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(sortArray([]int{2, 4, 5, 1, 3, 2}))
+	fmt.Println(sortArray1([]int{2, 4, 5, 1, 3, 6}))
+}
+
+func sortArray1(nums []int) []int {
+	for i := 0; i < len(nums); i++ {
+		for j := 0; j < len(nums)-i-1; j++ {
+			if nums[j] > nums[j+1] {
+				nums[j], nums[j+1] = nums[j+1], nums[j]
+			}
+		}
+	}
+
+	return nums
 }
 
 func sortArray(nums []int) []int {

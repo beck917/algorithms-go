@@ -5,6 +5,11 @@ type ListNode struct {
 	Next *ListNode
 }
 
+/**
+建立一个新的链表
+
+注意将剩余的那个链表,接到newlist后面就行了,不需要遍历了
+*/
 func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 	newListTmp := &ListNode{0, nil}
 	newList := newListTmp
