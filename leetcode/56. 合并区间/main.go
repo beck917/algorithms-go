@@ -9,11 +9,8 @@ func merge(intervals [][]int) [][]int {
 	results := make([][]int, 0)
 
 	var tmp []int
-	for i := 0; i < 2; i++ {
-		tmp = append(tmp, -1)
-	}
 	for _, v := range intervals {
-		if tmp[1] >= v[0] {
+		if len(tmp) != 0 && tmp[1] >= v[0] {
 			// 可以合并
 			if v[1] > tmp[1] {
 				tmp[1] = v[1]
@@ -22,11 +19,11 @@ func merge(intervals [][]int) [][]int {
 				tmp[0] = v[0]
 			}
 		} else {
-			if tmp[0] != -1 {
-				p := make([]int, 2)
-				copy(p, tmp)
-				results = append(results, p)
+			if len(tmp) != 0 {
+				results = append(results, tmp)
 			}
+			tmp = make([]int, 2)
+
 			tmp[0] = v[0]
 			tmp[1] = v[1]
 		}
