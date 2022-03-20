@@ -15,19 +15,18 @@ func isPalindrome(head *ListNode) bool {
 		}
 	}
 
-	mid := slow
-	right := reverse(mid)
+	right := reverse(slow)
 
 	cur := head
-	for cur != mid {
-		if cur.Val != slow.Val {
+	for cur != slow && right != nil {
+		if cur.Val != right.Val {
 			return false
 		}
 		cur = cur.Next
-		slow = slow.Next
+		right = right.Next
 	}
 
-	if slow != nil {
+	if right != nil {
 		return false
 	}
 
