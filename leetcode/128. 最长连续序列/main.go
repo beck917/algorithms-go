@@ -2,24 +2,27 @@ package main
 
 func longestConsecutive(nums []int) int {
 	n := len(nums)
-	visited := make(map[int]int, n)
-	dp := make([]int, n)
+	numsMap := make(map[int]bool, n)
 
-	for i := 0; i < n; i++ {
-		dp[i] = 1
+	for _, v := range nums {
+		numsMap[v] = true
 	}
 
+	max := 0
 	for i := 0; i < n; i++ {
-		if visited[nums[i]-1] != 0 {
-			dp[i] += visited[nums[i]-1]
-		}
+		if !numsMap[nums[i]-1] {
+			cur := nums[i]
+			tmpmax := 0
+			for numsMap[cur] {
+				cur += 1
+				tmpmax++
+			}
 
-		if visited[nums[i]+1] != 0 {
-			dp[i] += visited[nums[i]+1]
+			if tmpmax > max {
+				max = tmpmax
+			}
 		}
-
-		visited[nums[i]] = dp[i]
 	}
 
-	return dp[n-1]
+	return max
 }
