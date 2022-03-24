@@ -5,21 +5,30 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func deleteDuplicates(head *ListNode) *ListNode {
+func swapPairs(head *ListNode) *ListNode {
 	dummyHead := &ListNode{0, head}
 
-	cur := dummyHead
+	point := dummyHead
 
-	for cur.Next != nil && cur.Next.Next != nil {
-		if cur.Next.Val == cur.Next.Next.Val {
-			firstVal := cur.Next.Val
-
-			for cur.Next != nil && cur.Next.Val == firstVal {
-				cur.Next = cur.Next.Next
-			}
-		} else {
-			cur = cur.Next
+	for point != nil {
+		if point.Next == nil || point.Next.Next != nil {
+			break
 		}
+
+		var prev *ListNode
+		var next *ListNode
+		cur := point.Next
+		for i := 0; i < 2; i++ {
+			next = cur.Next
+			cur.Next = prev
+			prev = cur
+			cur = next
+		}
+
+		next = point.Next
+		point.Next = prev
+		next.Next = cur
+		point = next
 	}
 
 	return dummyHead.Next
