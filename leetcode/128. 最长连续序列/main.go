@@ -14,7 +14,7 @@ func longestConsecutive(nums []int) int {
 			cur := nums[i]
 			tmpmax := 0
 			for numsMap[cur] {
-				cur += 1
+				cur++
 				tmpmax++
 			}
 
