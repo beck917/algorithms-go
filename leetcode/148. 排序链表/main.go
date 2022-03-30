@@ -5,6 +5,22 @@ type ListNode struct {
 	Next *ListNode
 }
 
+/**
+卧槽.这个题目用归并排序,绝对是困难级别
+
+首先归并排序即便是数组都很难
+这里我们还是理一下思路,帮助记忆和背诵
+第一步,确定sort递归模板
+func sort(head, tail *ListNode) *ListNode {
+传入头尾节点,不断遍历
+	mid := slow
+	list1 := sort(head, mid)
+	list2 := sort(mid, tail)
+    快慢指针寻找到中间节点, 这里是一个分拆的过程,将大链表分拆成小链表
+
+    return mergeSort(list1, list2)
+    最后将小链表,合并,这里就是合并两个排序链表
+*/
 func mergeSort(list1, list2 *ListNode) *ListNode {
 	dummyHead := &ListNode{0, nil}
 	tmplist, cur1, cur2 := dummyHead, list1, list2

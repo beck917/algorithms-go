@@ -16,7 +16,7 @@ func merge(intervals [][]int) [][]int {
 				tmp[1] = v[1]
 			}
 			if v[0] < tmp[0] {
-				tmp[0] = v[0]
+				//tmp[0] = v[0] 这里不需要,已经排序过了
 			}
 		} else {
 			if len(tmp) != 0 {

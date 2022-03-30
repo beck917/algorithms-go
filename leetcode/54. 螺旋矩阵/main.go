@@ -35,16 +35,16 @@ func spiralOrder(matrix [][]int) []int {
 				}
 				tmpMatrix = append(tmpMatrix, tmp)
 				if len(v) >= 1 {
-					result = append(result, v[len(v)-1])
+					result = append(result, v[len(v)-1]) // 最右侧
 				}
 				if len(v) > 1 {
-					tmpResult = append(tmpResult, v[0])
+					tmpResult = append(tmpResult, v[0]) //最左侧缓存
 				}
 			}
 		}
 
 		for i := len(tmpResult) - 1; i >= 0; i-- {
-			result = append(result, tmpResult[i])
+			result = append(result, tmpResult[i]) //放入最左侧
 		}
 
 		matrix = tmpMatrix
