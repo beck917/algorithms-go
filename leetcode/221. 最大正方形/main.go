@@ -6,6 +6,7 @@ func maximalSquare(matrix [][]byte) int {
 	max := 0
 
 	n := len(matrix)
+	// 先将第一排横竖都设置为本身的值, 并标记max
 	for i := 0; i < n; i++ {
 		m := len(matrix[i])
 		dp[i] = make([]int, m)
@@ -31,7 +32,7 @@ func maximalSquare(matrix [][]byte) int {
 			dp[i][j] = int(matrix[i][j] - '0')
 
 			if dp[i][j] == 1 {
-				dp[i][j] = min(min(dp[i-1][j], dp[i][j-1]), dp[i-1][j-1]) + 1
+				dp[i][j] = min(min(dp[i-1][j], dp[i][j-1]), dp[i-1][j-1]) + 1 // 公式,就是上下,和左上角的最小值+1
 				if dp[i][j] > max {
 					max = dp[i][j]
 				}
