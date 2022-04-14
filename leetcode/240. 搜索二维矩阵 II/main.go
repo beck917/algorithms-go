@@ -5,15 +5,17 @@ func searchMatrix(matrix [][]int, target int) bool {
 		return false
 	}
 
-	left := 0
-	up := 0
-	right := len(matrix[0])
-	down := len(matrix)
-
-	for left <= right || up <= down {
-		midh := (left + right) >> 1
-		midv := (up + down) >> 1
-
-		if matrix[]
+	j := len(matrix[0]) - 1
+	i := len(matrix) - 1
+	for i >= 0 && j >= 0 {
+		if target < matrix[i][j] {
+			j--
+		} else if target > matrix[i][j] {
+			i--
+		} else {
+			return true
+		}
 	}
+
+	return false
 }
