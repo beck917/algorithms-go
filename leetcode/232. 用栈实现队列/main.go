@@ -25,7 +25,7 @@ func (this *MyQueue) in2out() {
 }
 
 func (this *MyQueue) Pop() int {
-	if len(this.outstack) == 0 {
+	if len(this.outstack) == 0 { //这里要注意,一定要为空的时候
 		this.in2out()
 	}
 
