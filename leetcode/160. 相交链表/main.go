@@ -30,7 +30,7 @@ func getIntersectionNode(headA, headB *ListNode) *ListNode {
 			headA = headA.Next
 		}
 	} else {
-		for i := 0; i < ai-bi; i++ {
+		for i := 0; i < bi-ai; i++ {
 			headB = headB.Next
 		}
 	}
