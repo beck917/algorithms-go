@@ -30,7 +30,7 @@ func backtrace(nums []int, index int, path []int, target int) {
 	for i := index; i < len(nums); i++ {
 		path = append(path, nums[i])
 
-		backtrace(nums, i, path, target-nums[i])
+		backtrace(nums, i, path, target-nums[i]) // 关键点:不用i+1了，表示可以重复读取当前的数
 
 		path = path[:len(path)-1]
 	}
