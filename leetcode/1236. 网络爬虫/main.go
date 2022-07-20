@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 	"sync"
 )
 
@@ -47,7 +48,7 @@ func crawl(startUrl string, htmlParser HtmlParser) []string {
 	results = make([]string, 0)
 
 	dfs(startUrl, htmlParser)
-
+	strings.Split(s, )
 	return results
 }
 

@@ -70,6 +70,7 @@ func heapify(nums []int, n, i int) {
 		if left < n && nums[maxPos] < nums[left] {
 			maxPos = left
 		}
+		// 选两个中更大的进行交换,这里maxpos上面进行了覆盖
 		if right < n && nums[maxPos] < nums[right] {
 			maxPos = right
 		}

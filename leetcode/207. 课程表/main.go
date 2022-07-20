@@ -1,5 +1,6 @@
 package main
 
+// 拓扑排序
 type Node struct {
 	indeg int     // 所有指向这个节点的课程节点之和(被指向)
 	adj   []*Node // 出度 邻节点(指向)

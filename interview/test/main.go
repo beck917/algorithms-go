@@ -1,5 +1,37 @@
 package main
 
+import (
+	"fmt"
+)
+
+func main() {
+	nums := []int{1, 2, 3}
+	fmt.Printf("%p 1 \n", nums)
+	nums = append(nums, 1)
+	fmt.Printf("%p 4 \n", nums)
+	results := [][]int{nums}
+	nums = nums[:len(nums)-1]
+	change(nums)
+	fmt.Println(nums)
+	fmt.Printf("%p 3 \n", nums)
+	fmt.Println(results)
+
+	a := make([]int, 0, 100)
+	a = append(a, 1, 2, 3)
+	foo(a)
+	//fmt.Println(a)
+}
+
+func foo(nums []int) {
+	nums = append(nums, 2)
+}
+
+func change(nums []int) {
+	nums = append(nums, 2)
+	fmt.Printf("%p 2 \n", nums)
+	//fmt.Println(nums)
+}
+
 type ListNode struct {
 	Val  int
 	Next *ListNode
